@@ -1,0 +1,19 @@
+.list-heroes {
+  list-style: none;
+  margin-bottom: 10px;
+}
+small {
+  color: crimson;
+}
+.delete-button {
+  color: crimson;
+  border: 1px solid red;
+  background-color: white;
+  border-color: crimson;
+  padding: 10px;
+  border-radius: 5px;
+  &:hover {
+    color: white;
+    background-color: crimson;
+  }
+}
