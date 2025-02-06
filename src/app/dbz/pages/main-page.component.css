@@ -1,0 +1,22 @@
+.form-table {
+  display: flex;
+  width: 100%;
+}
+
+.table,
+.form {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.table {
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px #3b0086;
+  & > * {
+    height: 100%;
+    width: 50%;
+    text-align: center;
+  }
+}

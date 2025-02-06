@@ -1,0 +1,10 @@
+.list-dbz {
+    list-style: none;
+    height: auto;
+  }
+  .list {
+    row-gap: 5px;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
