@@ -1,5 +1,6 @@
 <h3>Listado</h3>
 <ul class="list">
-  <li class="list-dbz">Krilin - 500</li>
-  <li class="list-dbz">Goku - 9000</li>
+  <li *ngFor="let character of character" class="list-dbz">
+    Nombre: {{ character.name }} - Poder: {{ character.power }}
+  </li>
 </ul>
