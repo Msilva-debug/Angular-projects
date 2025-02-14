@@ -21,4 +21,8 @@ export class MainPageComponent {
       power: 10000,
     },
   ];
+
+  onNewCharacter = (characterEmiter: Character): void => {
+    this.characters = [...this.characters, characterEmiter];
+  };
 }

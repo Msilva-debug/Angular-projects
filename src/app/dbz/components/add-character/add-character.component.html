@@ -1,6 +1,19 @@
 <h4>Agregar personaje</h4>
-<div class="add-character-component">
-  <input type="text" placeholder="Nombre" />
-  <input type="number" placeholder="Poder" />
-  <button class="add-button" type="submit">Agregar</button>
-</div>
+<form class="add-character-component">
+  <input
+    class="background-color-first"
+    [(ngModel)]="character.name"
+    type="text"
+    placeholder="Nombre"
+    name="name-character"
+  />
+  <input
+    class="background-color-first"
+    [(ngModel)]="character.power"
+    type="number"
+    placeholder="Poder"
+    name="power-character"
+  />
+  <button class="add-button" (click)="emitCharacter()">Agregar</button>
+
+</form>
