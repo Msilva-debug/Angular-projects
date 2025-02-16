@@ -4,7 +4,7 @@
 
   <div class="form-table">
     <div class="table">
-      <app-dbz-list [charactersList]="characters" style="width: 100%"></app-dbz-list>
+      <app-dbz-list [charactersList]="characters" (onDeleteCharacter)="onDeleteCharacter($event)" style="width: 100%"></app-dbz-list>
     </div>
     <div class="form">
       <div style="width: 50%">

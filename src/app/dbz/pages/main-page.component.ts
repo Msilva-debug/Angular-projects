@@ -7,22 +7,13 @@ import { Character } from '../interfaces/character-interface';
   styleUrl: './main-page.component.css',
 })
 export class MainPageComponent {
-  public characters: Character[] = [
-    {
-      name: 'Krilin',
-      power: 1000,
-    },
-    {
-      name: 'Goku',
-      power: 10001,
-    },
-    {
-      name: 'Vegetta',
-      power: 10000,
-    },
-  ];
+  public characters: Character[] = [];
 
   onNewCharacter = (characterEmiter: Character): void => {
     this.characters = [...this.characters, characterEmiter];
+  };
+
+  onDeleteCharacter = (characterList: Character[]) => {
+    this.characters = characterList;
   };
 }
