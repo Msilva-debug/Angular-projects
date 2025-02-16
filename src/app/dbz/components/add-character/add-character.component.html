@@ -1,5 +1,5 @@
 <h4>Agregar personaje</h4>
-<form class="add-character-component">
+<form class="add-character-component" (ngSubmit)="emitCharacter()">
   <input
     class="background-color-first"
     [(ngModel)]="character.name"
@@ -14,6 +14,6 @@
     placeholder="Poder"
     name="power-character"
   />
-  <button class="add-button" (click)="emitCharacter()">Agregar</button>
+  <button class="add-button">Agregar</button>
 
 </form>

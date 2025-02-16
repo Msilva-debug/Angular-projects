@@ -4,7 +4,7 @@ import { Character } from '../../interfaces/character-interface';
 @Component({
   selector: 'app-dbz-list',
   templateUrl: './list.component.html',
-  styleUrl: './list.component.css'
+  styleUrl: './list.component.css',
 })
 export class ListComponent {
   @Input()
@@ -12,7 +12,10 @@ export class ListComponent {
     {
       name: 'Trunks',
       power: 9999,
-    }
+    },
   ];
 
+  deleteCharacter = (idCharacter: number): void => {
+    this.charactersList = [...this.charactersList.slice(0, idCharacter), ...this.charactersList.slice(idCharacter += 1 , this.charactersList.length)]
+  };
 }

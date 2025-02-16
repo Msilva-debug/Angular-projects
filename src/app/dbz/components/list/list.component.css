@@ -1,8 +1,11 @@
 .list-dbz {
   list-style: none;
-  padding: 5px 0px 5px 0px;
+  padding: 5px 5px 5px 5px;
   height: auto;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .list {
   row-gap: 5px;
@@ -19,4 +22,16 @@
 .backgroud-color-last {
   color: white;
   background-color: #119da4;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  &:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
 }

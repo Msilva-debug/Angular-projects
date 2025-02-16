@@ -1,14 +1,24 @@
 <h3>Listado</h3>
 <ul class="list">
   <li
-    *ngFor="let character of charactersList; let isEven = even"
+    *ngFor="let character of charactersList; let isEven = even; let i = index"
     class="list-dbz"
     [ngClass]="{
       'background-color-first': isEven,
       'backgroud-color-last': !isEven
     }"
   >
-    <strong>Nombre:</strong> {{ character.name }} <strong> Poder:</strong>
-    {{ character.power }}
+    <div>
+      <strong>Nombre:</strong> {{ character.name }} <strong> Poder:</strong>
+      {{ character.power }}
+    </div>
+
+    <button
+      type="button"
+      class="delete-button"
+      (click)="deleteCharacter(i)"
+    >
+      X
+    </button>
   </li>
 </ul>
