@@ -4,12 +4,16 @@
 
   <div class="form-table">
     <div class="table">
-      <app-dbz-list [charactersList]="characters" (onDeleteCharacter)="onDeleteCharacter($event)" style="width: 100%"></app-dbz-list>
+      <app-dbz-list
+        [charactersList]="dbzService.characters"
+        (onDeleteCharacter)="dbzService.onDeleteCharacter($event)"
+        style="width: 100%"
+      ></app-dbz-list>
     </div>
     <div class="form">
       <div style="width: 50%">
         <app-dbz-add-character
-          (onNewCharacter)="onNewCharacter($event)"
+          (onNewCharacter)="dbzService.onNewCharacter($event)"
           style="padding: 0"
         ></app-dbz-add-character>
       </div>

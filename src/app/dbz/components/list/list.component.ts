@@ -18,11 +18,10 @@ export class ListComponent {
     },
   ];
 
-  deleteCharacter = (idCharacter: number): void => {
-    this.charactersList = [
-      ...this.charactersList.slice(0, idCharacter),
-      ...this.charactersList.slice(idCharacter + 1, this.charactersList.length),
-    ];
+  deleteCharacter = (character: Character): void => {
+    this.charactersList = this.charactersList.filter(
+      (objCharacter) => objCharacter.id !== character.id
+    );
     this.emitDeleteCharacter();
   };
 

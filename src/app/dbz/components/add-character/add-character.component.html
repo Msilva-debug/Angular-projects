@@ -10,7 +10,8 @@
   <input
     class="background-color-first"
     [(ngModel)]="character.power"
-    type="number"
+    type="text"
+    oninput="this.value=this.value.replace(/[^0-9]/g,'');"
     placeholder="Poder"
     name="power-character"
   />
