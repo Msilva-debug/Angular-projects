@@ -1,0 +1,23 @@
+.card-list {
+  margin-top: 10px;
+}
+
+.card-list-row {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 10px;
+}
+
+.card-list-row-info {
+  border-radius: 5px;
+  background-color: darkslategrey;
+  min-height: 100px;
+}
+
+.card-list-row-info p {
+  text-align: center;
+  color: white;
+  margin: 0;
+  padding: 10px;
+}

@@ -1,6 +1,10 @@
 <div class="sidebar" id="sidebar">
-  <h3>GifsApp</h3>
-  <hr />
+  <h3 class="sidebar-text">GifsApp</h3>
+  <hr class="sidebar-hr" />
 
-  <div></div>
+  <div class="sidebar-list">
+    <div *ngFor="let item of tags">
+      <button class="sidebar-list-button"> {{ item | titlecase }} </button>
+    </div>
+  </div>
 </div>
