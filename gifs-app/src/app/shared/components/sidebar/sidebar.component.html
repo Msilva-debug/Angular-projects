@@ -4,7 +4,7 @@
 
   <div class="sidebar-list">
     <div *ngFor="let item of tags">
-      <button class="sidebar-list-button"> {{ item | titlecase }} </button>
+      <button (click)="searchTag(item)" class="sidebar-list-button"> {{ item | titlecase }} </button>
     </div>
   </div>
 </div>

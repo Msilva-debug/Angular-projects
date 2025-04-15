@@ -1,28 +1,8 @@
-<div class="card-list">
-  <div class="card-list-row">
-    <div class="card-list-row-info">
-      <p>Hola mundo</p>
-    </div>
-    <div class="card-list-row-info">
-      <p>Hola mundo</p>
-    </div>
-    <div class="card-list-row-info">
-      <p>Hola mundo</p>
-    </div>
-    <div class="card-list-row-info">
-      <p>Hola mundo</p>
-    </div>
-    <div class="card-list-row-info">
-      <p>Hola mundo</p>
-    </div>
-    <div class="card-list-row-info">
-      <p>Hola mundo</p>
-    </div>
-    <div class="card-list-row-info">
-      <p>Hola mundo</p>
-    </div>
-    <div class="card-list-row-info">
-      <p>Hola mundo</p>
+<div class="card-list card-list-row">
+  <div *ngFor="let gif of gifList">
+    <div class="card-list-row-info"> 
+      <img [src]="gif.images.downsized_medium.url" alt="gif.title">
+      <p>{{ gif.title }}</p>
     </div>
   </div>
 </div>
