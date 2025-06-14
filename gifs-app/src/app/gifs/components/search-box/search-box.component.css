@@ -30,3 +30,25 @@
     border-color: rgba(99, 181, 187, 0.527);
   }
 }
+
+.btn-aceptar {
+  background-color: #4CAF50; /* Verde */
+  color: white;
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn-aceptar:hover {
+  background-color: #45a049;
+}
+
+@media (min-width: 600px){
+  .btn-aceptar{
+    display: none;
+  }
+}

@@ -7,6 +7,16 @@
   text-decoration: none;
 }
 
-gifs-home-page {
-  width: 100%;
+shared-sidebar{
+  width: 250px;
+}
+
+gifs-home-page{
+  flex: 1;
+}
+
+@media (max-width: 600px){
+  shared-sidebar{
+    display: none;
+  }
 }
