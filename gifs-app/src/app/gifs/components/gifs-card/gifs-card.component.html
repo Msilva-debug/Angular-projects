@@ -1,4 +1,4 @@
 <div class="card-list-row-info">
-  <img [src]="gif.images.downsized_medium.url" alt="gif.title" />
-  <p>{{ gif.title }}</p>
+  <shared-lazy-image [url]="gif.images.downsized_medium.url" ></shared-lazy-image>
+  <p>{{ gif.title || 'No title'}}</p>
 </div>

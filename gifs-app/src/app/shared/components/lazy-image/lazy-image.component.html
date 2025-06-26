@@ -1,0 +1,10 @@
+<div class="div-image">
+  <img
+    class="image"
+    [src]="url"
+    [alt]=""
+    (load)="onLoad()"
+    [ngStyle]="{ display: hasLoaded ? '' : 'none' }"
+  />
+  <img *ngIf="!hasLoaded" src="assets/loader.svg" alt="" />
+</div>

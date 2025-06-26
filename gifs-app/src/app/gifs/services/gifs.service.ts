@@ -6,7 +6,7 @@ import { Gif, SearchResponse } from '../interfaces/gifs.interfaces';
 export class GifsService {
   public gifList: Gif[] = [];
   private _tagHistory: string[] = [];
-  private apikey: string = 'heIckCivOebTmD84IyvAunvJbAstPFu9';
+  private apikey: string = 'LCFNf5X720B5h8fArNeuwWjxzPDThcgA';
   private serviceUrl: string = 'https://api.giphy.com/v1/gifs';
   constructor(private http: HttpClient) {
     this.loadLocalStorage()
