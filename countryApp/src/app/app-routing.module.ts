@@ -24,7 +24,7 @@ const routes: Routes = [
   /* Default  */
   {
     path: '**',
-    redirectTo: 'home',
+    redirectTo: 'countries',
   },
 ];
 
