@@ -18,7 +18,9 @@ export class ByCapitalPageComponent implements OnDestroy {
     this.subs.add(
       this.countriesService
         .searchByCapital(event)
-        .subscribe((countries) => (this.countries = countries))
+        .subscribe(
+          (countries) => (this.countries = countries)
+        )
     );
   }
 }
