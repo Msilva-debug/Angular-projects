@@ -9,18 +9,18 @@ import { Country } from '../../interfaces/country';
 })
 export class ByCapitalPageComponent implements OnDestroy {
   public subs: SubSink = new SubSink();
+  public isLoading: boolean = false;
   public countries: Country[] = [];
   ngOnDestroy(): void {
     this.subs.unsubscribe();
   }
   constructor(private countriesService: CountriesService) {}
   public searchByCapital(event: string): void {
+    this.isLoading = true;
     this.subs.add(
       this.countriesService
         .searchByCapital(event)
-        .subscribe(
-          (countries) => (this.countries = countries)
-        )
+        .subscribe((countries) => (this.countries = countries))
     );
   }
 }
