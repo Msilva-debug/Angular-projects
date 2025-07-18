@@ -11,8 +11,7 @@ export class CountriesService {
   public searchCountryByAlphaCode(id: string): Observable<Country | null> {
     return this.http.get<Country[]>(`${this.apiUrl}/alpha/${id}`).pipe(
       map((countries) => (countries.length > 0 ? countries[0] : null)),
-      catchError(() => of()),
-      delay(2000)
+      catchError(() => of())
     );
   }
   private getCountriesRequest(url: string): Observable<Country[]> {
