@@ -35,7 +35,12 @@ export class CountriesService {
   }
   public searchByCountry(country: string): Observable<Country[]> {
     const url = `${this.apiUrl}/name/${country}`;
-    return this.getCountriesRequest(url);
+    return this.getCountriesRequest(url).pipe(
+      tap(
+        (countries) =>
+          (this.cacheStore.byCountries = { term: country, countries })
+      )
+    );
   }
 
   public searchByRegion(region: string): Observable<Country[]> {
