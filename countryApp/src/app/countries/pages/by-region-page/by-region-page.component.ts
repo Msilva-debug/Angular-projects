@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CountriesService } from '../../services/countries.service';
 import { SubSink } from 'subsink';
 import { Country } from '../../interfaces/country';
@@ -9,7 +9,7 @@ import { Region } from '../../interfaces/region.type';
   templateUrl: './by-region-page.component.html',
   styles: ``,
 })
-export class ByRegionPageComponent implements OnDestroy {
+export class ByRegionPageComponent implements OnDestroy, OnInit {
   public countries: Country[] = [];
   public regions: Region[] = [
     'Africa',
@@ -25,6 +25,10 @@ export class ByRegionPageComponent implements OnDestroy {
   }
   public subs: SubSink = new SubSink();
   constructor(private countriesService: CountriesService) {}
+  ngOnInit(): void {
+    this.countries = this.countriesService.cacheStore.byRegion.countries;
+    this.selectedRegion = this.countriesService.cacheStore.byRegion.region;
+  }
   searchByRegion(event: Region): void {
     this.selectedRegion = event;
     this.subs.add(
