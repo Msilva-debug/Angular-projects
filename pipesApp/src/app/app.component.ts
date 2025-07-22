@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { PrimeNG } from 'primeng/config';
-import { ButtonModule } from 'primeng/button';
+
 
 @Component({
   selector: 'app-root',
@@ -8,9 +7,5 @@ import { ButtonModule } from 'primeng/button';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
- constructor(private primeng: PrimeNG) {}
 
-    ngOnInit() {
-        this.primeng.ripple.set(true);
-    }
 }
