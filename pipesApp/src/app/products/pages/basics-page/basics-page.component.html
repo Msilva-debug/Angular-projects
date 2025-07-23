@@ -1,0 +1,36 @@
+<div class="grid-container">
+  <div class="full-width">
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Pipes Basicos </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>Pipes incluídos en Angular - Usualmente en el Common Module</p>
+    </mat-expansion-panel>
+  </div>
+  <div class="full-width no-full-width">
+    <div>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> uppercase </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>{{ nameLower | uppercase }}</p>
+      </mat-expansion-panel>
+    </div>
+    <div>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> lowercase </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>{{ nameUpper | lowercase }}</p>
+      </mat-expansion-panel>
+    </div>
+    <div>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> titlecase </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>{{ fullName | titlecase }}</p>
+      </mat-expansion-panel>
+    </div>
+  </div>
+</div>

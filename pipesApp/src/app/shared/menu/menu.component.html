@@ -1,48 +1,43 @@
-<button mat-button>
-  <mat-icon>home</mat-icon>
-  <span>Home</span>
-</button>
-<button mat-button>
-  <mat-icon>featured_video</mat-icon>
-  <span>Features</span>
-</button>
+<div style="background-color: rgba(245, 245, 245, 0.199)">
+  <button mat-button [matMenuTriggerFor]="pipesDeAngular">
+    <mat-icon>assessment</mat-icon>
+    <span>Pipes de Angular</span>
+    <svg
+      viewBox="0 0 17 10"
+      focusable="false"
+      aria-hidden="true"
+      class="mat-mdc-menu-submenu-icon"
+      style="transform: rotate(90deg)"
+    >
+      <polygon points="0,0 5,5 0,10"></polygon>
+    </svg>
+  </button>
+  <button mat-button>
+    <mat-icon>assessment</mat-icon>
+    <span>Pipes Personalizados</span>
+    <svg
+      viewBox="0 0 17 10"
+      focusable="false"
+      aria-hidden="true"
+      class="mat-mdc-menu-submenu-icon"
+      style="transform: rotate(90deg)"
+    >
+      <polygon points="0,0 5,5 0,10"></polygon>
+    </svg>
+  </button>
+  <mat-menu #pipesDeAngular>
+    <button mat-menu-item [routerLink]="[]">
+      <mat-icon>settings_input_component</mat-icon>
+      <span>Textos y Fechas</span>
+    </button>
+    <button mat-menu-item [routerLink]="['numbers']">
+      <mat-icon>block</mat-icon>
+      <span>Números</span>
+    </button>
+    <button mat-menu-item [routerLink]="['uncommon']">
+      <mat-icon>flag</mat-icon>
+      <span>No comunes</span>
+    </button>
+  </mat-menu>
+</div>
 
-<button mat-button [matMenuTriggerFor]="projects">
-  <mat-icon>assessment</mat-icon>
-  <span>Projects</span>
-  <mat-icon>keyboard_arrow_down</mat-icon>
-</button>
-<mat-menu #projects>
-  <button mat-menu-item>
-    <mat-icon>settings_input_component</mat-icon>
-    <span>Components</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>block</mat-icon>
-    <span>Blocks</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>flag</mat-icon>
-    <span>UI Kit</span>
-  </button>
-  <button mat-menu-item [matMenuTriggerFor]="templates">
-    <mat-icon>ballot</mat-icon>
-    <span>Templates</span>
-  </button>
-</mat-menu>
-
-<button mat-button>
-  <mat-icon>contact_support</mat-icon>
-  <span>Contact</span>
-</button>
-
-<mat-menu #templates>
-  <button mat-menu-item>
-    <mat-icon>done</mat-icon>
-    <span>Apollo</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>done_outline</mat-icon>
-    <span>Ultima</span>
-  </button>
-</mat-menu>
