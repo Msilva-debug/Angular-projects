@@ -8,11 +8,18 @@
   grid-column: span 4;
 }
 
-.no-full-width {
+.grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
 }
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
 
 mat-expansion-panel {
   background-color: rgba(245, 245, 245, 0.199);

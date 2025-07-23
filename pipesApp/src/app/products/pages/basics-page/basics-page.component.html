@@ -7,7 +7,7 @@
       <p>Pipes incluídos en Angular - Usualmente en el Common Module</p>
     </mat-expansion-panel>
   </div>
-  <div class="full-width no-full-width">
+  <div class="full-width grid-3">
     <div>
       <mat-expansion-panel [expanded]="true">
         <mat-expansion-panel-header>
@@ -30,6 +30,48 @@
           <mat-panel-title> titlecase </mat-panel-title>
         </mat-expansion-panel-header>
         <p>{{ fullName | titlecase }}</p>
+      </mat-expansion-panel>
+    </div>
+  </div>
+  <div class="full-width grid-2">
+    <div>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> titlecase </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ol>
+          <li>fecha</li>
+          <li>fecha | date</li>
+          <li>date | date:'MMMM'</li>
+          <li>date | date:'MMMM'</li>
+          <li>date | date:'MMMM'</li>
+          <li>date | date:'MMMM'</li>
+        </ol>
+        <hr />
+        <ol>
+          <li>fecha | date:'long':'GMT-6'</li>
+          <li>fecha | date:'long':'GMT-4'</li>
+        </ol>
+      </mat-expansion-panel>
+    </div>
+    <div>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> titlecase </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ul>
+          <li>{{ date }}</li>
+          <li>{{ date | date }}</li>
+          <li>{{ date | date : "short" }}</li>
+          <li>{{ date | date : "long" }}</li>
+          <li>{{ date | date : "MMMM" }}</li>
+          <li>{{ date | date : "MMMM dd, yyyy" }}</li>
+        </ul>
+        <hr />
+        <ol>
+          <li>{{ date | date : "long" : "GMT-6" }}</li>
+          <li>{{ date | date : "long" : "GMT-4" }}</li>
+        </ol>
       </mat-expansion-panel>
     </div>
   </div>
