@@ -1,1 +1,36 @@
-<p>numbers-page works!</p>
+<div class="grid-container">
+  <div class="full-width">
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Pipes Numericos </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>Pipes incluídos en Angular - Usualmente en el Common Module</p>
+    </mat-expansion-panel>
+  </div>
+  <div class="full-width grid-3">
+    <div>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Ventas netas </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>{{ totalSells | number : "1.2-2" }}</p>
+      </mat-expansion-panel>
+    </div>
+    <div>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Ventas brutas </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>{{ totalSells | currency : "HNL" : "symbol-narrow" : "1.4-4" }}</p>
+      </mat-expansion-panel>
+    </div>
+    <div>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Ganancia porcentual </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>{{ percent | percent : "1.1-2" }}</p>
+      </mat-expansion-panel>
+    </div>
+  </div>
+</div>

@@ -42,15 +42,16 @@
         <ol>
           <li>fecha</li>
           <li>fecha | date</li>
+          <li>date | date:'short'</li>
+          <li>date | date:'long'</li>
           <li>date | date:'MMMM'</li>
-          <li>date | date:'MMMM'</li>
-          <li>date | date:'MMMM'</li>
-          <li>date | date:'MMMM'</li>
+          <li>date | date:'MMMM dd, yyyy'</li>
         </ol>
         <hr />
         <ol>
           <li>fecha | date:'long':'GMT-6'</li>
           <li>fecha | date:'long':'GMT-4'</li>
+          <li>fecha | date:'long':'':'es-CO'</li>
         </ol>
       </mat-expansion-panel>
     </div>
@@ -59,18 +60,19 @@
         <mat-expansion-panel-header>
           <mat-panel-title> titlecase </mat-panel-title>
         </mat-expansion-panel-header>
-        <ul>
+        <ol>
           <li>{{ date }}</li>
           <li>{{ date | date }}</li>
           <li>{{ date | date : "short" }}</li>
           <li>{{ date | date : "long" }}</li>
           <li>{{ date | date : "MMMM" }}</li>
           <li>{{ date | date : "MMMM dd, yyyy" }}</li>
-        </ul>
+        </ol>
         <hr />
         <ol>
           <li>{{ date | date : "long" : "GMT-6" }}</li>
           <li>{{ date | date : "long" : "GMT-4" }}</li>
+          <li>{{ date | date : "long" : "" : "es-CO" }}</li>
         </ol>
       </mat-expansion-panel>
     </div>

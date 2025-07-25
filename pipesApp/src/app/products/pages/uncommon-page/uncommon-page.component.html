@@ -1,1 +1,98 @@
-<p>uncommon-page works!</p>
+<div class="grid-container">
+  <div class="full-width">
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Pipes no tan comunes </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>Pipes incluídos en Angular - Usualmente en el Common Module</p>
+    </mat-expansion-panel>
+  </div>
+  <div class="full-width grid-2">
+    <div>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> i18nSelect Pipe </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          Saludos {{ name }}, es un placer
+          {{ gender | i18nSelect : invitationMap }}
+          a nuestro evento.
+        </p>
+        <div class="example-button-container">
+          <button mat-fab extended (click)="changeClient()">
+            <mat-icon>favorite</mat-icon>
+            Cambiar persona
+          </button>
+        </div>
+      </mat-expansion-panel>
+    </div>
+    <div>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> i18nPlural Pipe </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>
+          Actualmente
+          {{ clients.length | i18nPlural : clientsMap }}.
+        </p>
+        <div class="example-button-container">
+          <button mat-fab extended (click)="deleteClient()">
+            <mat-icon>favorite</mat-icon>
+            Borrar cliente
+          </button>
+        </div>
+      </mat-expansion-panel>
+    </div>
+  </div>
+  <div class="full-width grid-2">
+    <div>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>Slice Pipe </mat-panel-title>
+        </mat-expansion-panel-header>
+        <b>Original</b>
+        <p>{{ clients }}</p>
+
+        <b>slice:0:2</b>
+        <p>{{ clients | slice : 0 : 2 }}</p>
+
+        <b>slice:1:2</b>
+        <p>{{ clients | slice : 1 : 2 }}</p>
+
+        <b>slice:0:-2</b>
+        <p>{{ clients | slice : 0 : -2 }}</p>
+      </mat-expansion-panel>
+    </div>
+    <div>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Json Pipe </mat-panel-title>
+        </mat-expansion-panel-header>
+        <pre>{{ person | json }}</pre>
+      </mat-expansion-panel>
+    </div>
+  </div>
+  <div class="full-width grid-2">
+    <div>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>KeyValue Pipe </mat-panel-title>
+        </mat-expansion-panel-header>
+        <ol>
+          <li *ngFor="let item of person | keyvalue">
+            {{ item }}
+          </li>
+        </ol>
+      </mat-expansion-panel>
+    </div>
+    <div>
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Async Pipe </mat-panel-title>
+        </mat-expansion-panel-header>
+        <!-- <pre>{{ myObservableTimer | async }}</pre> -->
+        <pre>{{ myObservableTimer | json }}</pre>
+      </mat-expansion-panel>
+    </div>
+  </div>
+</div>
