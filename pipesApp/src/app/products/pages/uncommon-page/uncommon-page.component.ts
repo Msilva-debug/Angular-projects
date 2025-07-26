@@ -45,4 +45,10 @@ export class UncommonPageComponent {
   public myObservableTimer = interval(2000).pipe(
     tap((value) => console.log(value))
   );
+
+  public promiseValue: Promise<string> = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve('Ya tengo la promesa, amigos:D');
+    }, 3500);
+  });
 }
