@@ -1,0 +1,45 @@
+<div class="grid-container">
+  <div class="full-width">
+    <mat-expansion-panel [expanded]="true">
+      <mat-expansion-panel-header>
+        <mat-panel-title> Pipes Personalizados </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>
+        Pipes personalizados - creados por {{ "noSotRos" | toggleCase : isUpperCase }}
+      </p>
+    </mat-expansion-panel>
+  </div>
+</div>
+
+<mat-toolbar>
+  <div class="mat-toolbar-div">
+    <div class="example-button-container" (click)="toggleToUpperCase()">
+      <a mat-fab extended routerLink=".">
+        <mat-icon>create_new_folder</mat-icon>
+        ToggleCase
+      </a>
+    </div>
+  </div>
+
+  <span class="example-spacer"></span>
+  <div class="mat-toolbar-div">
+    <div class="example-button-container">
+      <a mat-fab extended routerLink=".">
+        <mat-icon>upload</mat-icon>
+        Por nombre
+      </a>
+    </div>
+    <div class="example-button-container">
+      <a mat-fab extended routerLink=".">
+        <mat-icon>save</mat-icon>
+        Por color
+      </a>
+    </div>
+    <div class="example-button-container">
+      <a mat-fab extended routerLink=".">
+        <mat-icon>upload</mat-icon>
+        Por color
+      </a>
+    </div>
+  </div>
+</mat-toolbar>

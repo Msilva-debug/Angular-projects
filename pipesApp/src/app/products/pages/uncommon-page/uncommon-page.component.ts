@@ -2,7 +2,7 @@ import { Component, OnDestroy } from '@angular/core';
 import { interval, tap } from 'rxjs';
 
 @Component({
-  selector: 'app-uncommon-page',
+  selector: 'products-uncommon-page',
   templateUrl: './uncommon-page.component.html',
   styleUrl: './uncommon-page.component.css',
 })

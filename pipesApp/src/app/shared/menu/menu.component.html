@@ -12,7 +12,7 @@
       <polygon points="0,0 5,5 0,10"></polygon>
     </svg>
   </button>
-  <button mat-button>
+  <button mat-button [matMenuTriggerFor]="pipesPersonalizados">
     <mat-icon>assessment</mat-icon>
     <span>Pipes Personalizados</span>
     <svg
@@ -39,5 +39,11 @@
       <span>No comunes</span>
     </button>
   </mat-menu>
-</div>
 
+  <mat-menu #pipesPersonalizados>
+    <button mat-menu-item [routerLink]="['custom']">
+      <mat-icon>settings_input_component</mat-icon>
+      <span>Custom Pipes</span>
+    </button>
+  </mat-menu>
+</div>
