@@ -8,6 +8,7 @@ import { AngularMaterialModule } from '../angular-material/angular-material.modu
 import { CommonModule } from '@angular/common';
 import { OrderComponent } from './pages/order/order.component';
 import { ToggleCasePipe } from './pipe/toggle-case.pipe';
+import { CanFlyPipe } from './pipe/can-fly.pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ToggleCasePipe } from './pipe/toggle-case.pipe';
     NumbersPageComponent,
     UncommonPageComponent,
     OrderComponent,
-    ToggleCasePipe
+    ToggleCasePipe,
+    CanFlyPipe,
   ],
   imports: [ProductsRoutingModule, AngularMaterialModule, CommonModule],
 })
