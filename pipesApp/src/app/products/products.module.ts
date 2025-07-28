@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { OrderComponent } from './pages/order/order.component';
 import { ToggleCasePipe } from './pipe/toggle-case.pipe';
 import { CanFlyPipe } from './pipe/can-fly.pipe';
+import { SortByPipe } from './pipe/sort-by.pipe';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { CanFlyPipe } from './pipe/can-fly.pipe';
     OrderComponent,
     ToggleCasePipe,
     CanFlyPipe,
+    SortByPipe,
   ],
   imports: [ProductsRoutingModule, AngularMaterialModule, CommonModule],
 })
