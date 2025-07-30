@@ -17,6 +17,10 @@ import { MaterialModule } from '../material/material.module';
     NewPageComponent,
     SearchPageComponent,
   ],
-  imports: [CommonModule, HeroesRoutingModule, MaterialModule],
+  imports: [
+    CommonModule,
+    HeroesRoutingModule,
+    MaterialModule
+  ],
 })
 export class HeroesModule {}
