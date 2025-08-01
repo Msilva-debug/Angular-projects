@@ -17,7 +17,6 @@ export class LayoutPageComponent {
   ];
 
   get userName(): User | undefined {
-    console.log('Fetching current user', this.authService.currentUser);
     return this.authService.currentUser;
   }
   public onLogout(): void {
