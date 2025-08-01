@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Hero, Publisher } from '../../interfaces/hero.interface';
 import { HeroesService } from '../../services/heroes.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { filter, switchMap } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-new-page',
@@ -12,6 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styles: ``,
 })
 export class NewPageComponent implements OnInit {
+  readonly dialog = inject(MatDialog);
   constructor(
     private heroService: HeroesService,
     private activatedRoute: ActivatedRoute,
@@ -64,6 +67,32 @@ export class NewPageComponent implements OnInit {
       this.showSnackbar(`Heroe ${hero.superhero} creado`);
       this.router.navigate(['/heroes/edit', hero.id]);
     });
+  }
+
+  onDeleteHero(): void {
+    if (!this.currentHero.id) {
+      this.showSnackbar('No se puede borrar un héroe sin ID');
+      return;
+    }
+
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: this.heroForm.value,
+    });
+
+    dialogRef
+      .afterClosed()
+      .pipe(
+        filter((result: boolean) => result),
+        switchMap(() => this.heroService.deleteHeroById(this.currentHero.id))
+      )
+      .subscribe((resultDeleteHero: boolean) => {
+        if (!resultDeleteHero) {
+          this.showSnackbar('Error al eliminar el héroe');
+          return;
+        }
+        this.showSnackbar('Héroe eliminado');
+        this.router.navigate(['/heroes/list']);
+      });
   }
 
   showSnackbar(message: string): void {
