@@ -2,7 +2,7 @@
   "users": [
     {
       "id": 1,
-      "usuario": "John Doe",
+      "user": "John Doe",
       "email": "john.due@gmail.com"
     }
   ],
@@ -166,24 +166,6 @@
       "alter_ego": "Norrin Radd",
       "first_appearance": "The Fantastic Four #48",
       "characters": "Norrin Radd"
-    },
-    {
-      "id": "3NV4RHW",
-      "superhero": "Shogun",
-      "publisher": "DC Comics",
-      "alter_ego": "Raiden",
-      "first_appearance": "Genshin",
-      "characters": "Shogun Raiden, Baal",
-      "alt_img": "https://specials-images.forbesimg.com/imageserve/612e21938be536716acf31d7/960x0.jpg"
-    },
-    {
-      "id": "wWc0yab",
-      "superhero": "Prueba",
-      "publisher": "DC Comics",
-      "alter_ego": "Super",
-      "first_appearance": "asd",
-      "characters": "aksd",
-      "alt_img": "https://a-static.besthdwallpaper.com/raiden-shogun-with-yae-miko-genshin-impact-online-video-game-wallpaper-5120x2880-112868_55.jpg"
     }
   ]
 }
