@@ -7,11 +7,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styles: ``,
 })
 export class BasicPageComponent {
-  public myForm!: FormGroup;
+  public myForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
-
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder) {
     this.myForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3)]],
       price: [0, [Validators.required, Validators.min(0)]],
@@ -20,8 +18,8 @@ export class BasicPageComponent {
   }
 
   onSave(): void {
-
     if (!this.myForm.valid) return;
     console.log(this.myForm.value);
+    this.myForm.reset();
   }
 }
