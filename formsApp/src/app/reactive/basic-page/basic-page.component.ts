@@ -16,9 +16,32 @@ export class BasicPageComponent {
       inStorage: [0, [Validators.required, Validators.min(0)]],
     });
   }
+  isValidField(field: string): boolean | null {
+    return (
+      this.myForm.controls[field].errors && this.myForm.controls[field].touched
+    );
+  }
+
+  getFieldError(field: string): string | null {
+    if (!this.myForm.controls[field].errors) {
+      return null;
+    }
+    const errors = this.myForm.controls[field].errors;
+    if (errors['required']) {
+      return 'Este campo es requerido';
+    } else if (errors['minlength']) {
+      return `Debe de tener al menos ${errors['minlength'].requiredLength} letras`;
+    } else if (errors['min']) {
+      return `El valor mínimo es ${errors['min'].min}`;
+    }
+    return null;
+  }
 
   onSave(): void {
-    if (!this.myForm.valid) return;
+    if (!this.myForm.valid) {
+      this.myForm.markAllAsTouched();
+      return;
+    }
     console.log(this.myForm.value);
     this.myForm.reset();
   }
