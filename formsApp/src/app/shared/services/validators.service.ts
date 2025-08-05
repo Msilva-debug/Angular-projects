@@ -22,4 +22,28 @@ export class ValidatorsService {
   public isValidField(myForm: FormGroup, field: string): boolean | null {
     return myForm.controls[field].errors && myForm.controls[field].touched;
   }
+
+  public validateSecondPasswords = (formGroup: FormGroup) => {
+    console.log('uwu')
+    const password = formGroup.controls['password'].value;
+    const password2 = formGroup.controls['password2'].value;
+
+    if (password === password2) return null;
+
+    return { errorPassword: true };
+  };
+
+  public getFieldError(field: string, formGroup: FormGroup): string | null {
+    if (!formGroup.controls[field].errors) {
+      return null;
+    }
+
+    const errors = formGroup.controls[field].errors;
+    if (errors['errorPassword']) {
+      return 'No coinciden las contraseñas';
+    } else {
+      return 'Este campo es requerido';
+    }
+  }
+
 }

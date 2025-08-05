@@ -47,7 +47,7 @@
             class="form-control"
             placeholder="Nombre código del usuario"
           />
-          <span *ngIf="isValidField('userName')"  class="form-text text-danger">
+          <span *ngIf="isValidField('userName')" class="form-text text-danger">
             El username no puede ser Strider
           </span>
         </div>
@@ -81,9 +81,18 @@
             placeholder="Confirmar la contraseña"
           />
 
-          <span *ngIf="isValidField('password2')" class="form-text text-danger">
-            Las contraseñas deben de ser iguales
+          <span
+            *ngIf="isValidField('password2'); else ngtemplate"
+            class="form-text text-danger"
+          >
+            {{ getFieldError("password2") }}
           </span>
+
+          <ng-template #ngtemplate>
+            <span *ngIf="isValidGroup" class="form-text text-danger">
+              {{ getGroupError }}
+            </span>
+          </ng-template>
         </div>
       </div>
 
