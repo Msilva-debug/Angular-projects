@@ -6,7 +6,7 @@ import {
   Region,
   SmallCountry,
 } from '../../interfaces/country.interface';
-import { switchMap, tap } from 'rxjs';
+import { filter, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'countries-selector-page',
@@ -16,6 +16,7 @@ import { switchMap, tap } from 'rxjs';
 export class SelectorPageComponent implements OnInit {
   public formSelectorPage: FormGroup = new FormGroup({});
   public infoCountries: SmallCountry[] = [];
+  public infoBorders: string[] = [];
   constructor(
     private fb: FormBuilder,
     private countriesService: CountriesService
@@ -23,11 +24,12 @@ export class SelectorPageComponent implements OnInit {
     this.formSelectorPage = this.fb.group({
       region: ['', [Validators.required]],
       country: ['', [Validators.required]],
-      borders: ['', [Validators.required]],
+      border: ['', [Validators.required]],
     });
   }
   ngOnInit(): void {
     this.onRegionChanged();
+    this.onCountryChanged();
   }
 
   get regions(): Region[] {
@@ -38,6 +40,8 @@ export class SelectorPageComponent implements OnInit {
     const formControlRegion = this.formSelectorPage.get('region');
     formControlRegion!.valueChanges
       .pipe(
+        tap(() => this.formSelectorPage.get('country')!.setValue('')),
+        tap(() => (this.infoBorders = [])),
         switchMap((region) =>
           this.countriesService.getCountriesByRegion(region)
         ),
@@ -46,7 +50,24 @@ export class SelectorPageComponent implements OnInit {
       .subscribe();
   }
 
+  onCountryChanged(): void {
+    const formControlCountry = this.formSelectorPage.get('country');
+    formControlCountry!.valueChanges
+      .pipe(
+        tap(() => this.formSelectorPage.get('border')!.setValue('')),
+        switchMap((country) =>
+          this.countriesService.getBorderByCountry(country)
+        ),
+        tap((border) => (this.infoBorders = border.border))
+      )
+      .subscribe();
+  }
+
   get countries(): SmallCountry[] {
     return [...this.infoCountries];
+  }
+
+  get borders(): string[] {
+    return structuredClone(this.infoBorders);
   }
 }

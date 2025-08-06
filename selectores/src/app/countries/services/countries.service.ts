@@ -25,9 +25,22 @@ export class CountriesService {
         countries.map((country) => ({
           name: country.name.common,
           cca3: country.cca3,
-          borders: country.borders ?? [],
+          border: country.borders ?? [],
         }))
       )
+    );
+  }
+
+  public getBorderByCountry(country: SmallCountry): Observable<SmallCountry> {
+    if (!country) return of();
+
+    const urlGetRegion: string = `${this.baseUrl}/alpha/${country}?fields=cca3,name,borders`;
+    return this.httpClient.get<Country>(`${urlGetRegion}`).pipe(
+      map((country) => ({
+        name: country.name.common,
+        cca3: country.cca3,
+        border: country.borders ?? [],
+      }))
     );
   }
 
