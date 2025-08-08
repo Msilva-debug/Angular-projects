@@ -1,0 +1,4 @@
+/* Se utiliza con el fin de que el componente no se destruya y no regrese a los valores default */
+.hide-element {
+  display: none;
+}

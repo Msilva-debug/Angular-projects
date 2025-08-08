@@ -27,28 +27,38 @@ export class ProductComponent
     AfterViewChecked,
     OnDestroy
 {
+  public isProductToggle: boolean = true;
+  public priceComponent: number = 10;
+  constructor() {
+    console.log('constructor');
+  }
   ngAfterViewChecked(): void {
-    throw new Error('Method not implemented.');
+    console.log('ngAfterViewChecked');
   }
   ngAfterViewInit(): void {
-    throw new Error('Method not implemented.');
+    console.log('ngAfterViewInit');
   }
   ngAfterContentChecked(): void {
-    throw new Error('Method not implemented.');
+    console.log('ngAfterContentChecked');
   }
   ngAfterContentInit(): void {
-    throw new Error('Method not implemented.');
+    console.log('ngAfterContentInit');
   }
   ngDoCheck(): void {
-    throw new Error('Method not implemented.');
+    console.log('ngDoCheck');
   }
   ngOnChanges(changes: SimpleChanges): void {
-    throw new Error('Method not implemented.');
+    console.log({ changes });
+    console.log('ngOnChanges');
   }
   ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
+    console.log('ngOnDestroy');
   }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    console.log('ngOnInit');
+  }
+
+  public currentPrice() {
+    this.priceComponent++;
   }
 }
