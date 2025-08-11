@@ -15,5 +15,6 @@ export class SideMenuComponent {
     { route: '/maps/markers', name: 'Markers' },
     { route: '/maps/properties', name: 'Properties' },
     { route: '/maps/zoomrange', name: 'ZoomRange' },
+    { route: '/alone', name: 'Alone' },
   ];
 }
