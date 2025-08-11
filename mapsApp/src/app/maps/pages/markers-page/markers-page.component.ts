@@ -1,6 +1,16 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { LngLat, Map, Marker } from 'mapbox-gl';
 
+interface MarkerAndColor {
+  color: string;
+  marker: Marker;
+}
+
+interface PlainMarker {
+  color: string;
+  lngLat: number[];
+}
+
 @Component({
   templateUrl: './markers-page.component.html',
   styleUrl: './markers-page.component.css',
@@ -9,6 +19,7 @@ export class MarkersPageComponent implements AfterViewInit {
   @ViewChild('map') divMap?: ElementRef;
   public currentLngLat: LngLat = new LngLat(-76.5, 3.43);
   public map?: Map;
+  public markers: MarkerAndColor[] = [];
   ngAfterViewInit(): void {
     if (!this.divMap) throw 'El elemento HTML no existe):';
     this.map = new Map({
@@ -17,20 +28,11 @@ export class MarkersPageComponent implements AfterViewInit {
       center: this.currentLngLat,
       zoom: 13,
     });
-    // const markerHtml = document.createElement('img');
-    // markerHtml.src =
-    //   'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWqUoR6IXB5oAVRqIfgGV1Qf-4a1z8zRmjww&s';
-    // markerHtml.style.width = '40px'; // opcional
-    // markerHtml.style.height = '40px'; // opcional
 
-    // const marker = new Marker({
-    //   // element: markerHtml
-    // })
-    //   .setLngLat(this.currentLngLat)
-    //   .addTo(this.map);
+    this.loadToLocalStorage();
   }
 
-  createMarker() {
+  createMarker = () => {
     if (!this.map) return;
 
     const color = '#xxxxxx'.replace(/x/g, (y) =>
@@ -38,20 +40,58 @@ export class MarkersPageComponent implements AfterViewInit {
     );
 
     this.addMarker(this.map!.getCenter(), color);
+  };
 
-    console.log('aksdaskda', this.map);
-  }
-
-  addMarker(lngLat: LngLat, color: string) {
+  addMarker = (lngLat: LngLat, color: string) => {
     if (!this.map) return;
-    new Marker({ color, draggable: true }).setLngLat(lngLat).addTo(this.map!);
-  }
 
-  get markers() {
-    return this.map?._markers;
-  }
+    const marker = new Marker({
+      color: color,
+      draggable: true,
+    })
+      .setLngLat(lngLat)
+      .addTo(this.map);
 
-  redirectMarker(lngLat: LngLat) {
-    this.map?.setCenter(lngLat);
+    this.markers.push({ color, marker });
+    this.saveToLocalStorage();
+
+    // dragend
+    this.map.on('dragend', (ev) => {
+      this.saveToLocalStorage();
+    });
+  };
+
+  redirectMarker = (marker: Marker) => {
+    this.map?.flyTo({
+      zoom: 14,
+      center: marker.getLngLat(),
+    });
+  };
+
+  deleteMarker(index: number) {
+    this.markers[index].marker.remove();
+    this.markers.splice(index, 1);
   }
+  saveToLocalStorage = () => {
+    const plainMarkers: PlainMarker[] = this.markers.map(
+      ({ color, marker }) => {
+        return {
+          color,
+          lngLat: marker.getLngLat().toArray(),
+        };
+      }
+    );
+    localStorage.setItem('plainMarkers', JSON.stringify(plainMarkers));
+  };
+  loadToLocalStorage = () => {
+    const plainMarkersString = localStorage.getItem('plainMarkers') ?? '[]';
+    const plainMarkers: PlainMarker[] = JSON.parse(plainMarkersString);
+
+    plainMarkers.forEach(({ color, lngLat }) => {
+      const [lng, lat] = lngLat;
+      const coords = new LngLat(lng, lat);
+
+      this.addMarker(coords, color);
+    });
+  };
 }
