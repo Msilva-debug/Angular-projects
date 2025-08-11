@@ -13,7 +13,7 @@ import { LngLat, Map } from 'mapbox-gl';
 })
 export class ZoomRangePageComponent implements AfterViewInit, OnDestroy {
   @ViewChild('map') divMap?: ElementRef;
-  public currentLngLat: LngLat = new LngLat(-74.5, 40);
+  public currentLngLat: LngLat = new LngLat(-76.5, 3.34);
   public zoom: number = 10;
   public map?: Map;
   ngAfterViewInit(): void {
@@ -48,7 +48,7 @@ export class ZoomRangePageComponent implements AfterViewInit, OnDestroy {
   };
 
   zoomOut = () => {
-    this.map?.zoomOut;
+    this.map?.zoomOut();
   };
 
   zoomChanged = (value: string) => {

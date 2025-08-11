@@ -1,1 +1,16 @@
-<p>markers-page works!</p>
+<div id="map" #map></div>
+
+<ul class="list-group">
+  <li
+    [ngStyle]="{ 'background-color': marker._color }"
+    *ngFor="let marker of markers"
+    (click)="redirectMarker(marker._lngLat)"
+    class="list-item list-group-item"
+  >
+    {{ marker._lngLat }}
+  </li>
+</ul>
+
+<button class="btn btn-primary" (click)="createMarker()">
+  + Agregar marcador
+</button>
