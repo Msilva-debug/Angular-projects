@@ -38,7 +38,6 @@ export class CustomLabelDirective implements OnInit {
       return;
     }
     const errores = Object.keys(this._errors);
-    console.log('====>', errores);
 
     if (errores.includes('required')) {
       this.htmlElement.nativeElement.innerText =
@@ -48,7 +47,6 @@ export class CustomLabelDirective implements OnInit {
     }
     if (errores.includes('minlength')) {
       const parametrosMinLength = this._errors['minlength'];
-      console.log({ rangoActual: parametrosMinLength });
       this.htmlElement.nativeElement.innerText = `Usted ha escrito ${parametrosMinLength.actualLength} parametros y son ${parametrosMinLength.requiredLength} minimo`;
       this.htmlElement.nativeElement.style.color = 'red';
       return;
