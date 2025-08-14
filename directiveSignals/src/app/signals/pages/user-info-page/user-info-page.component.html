@@ -2,18 +2,22 @@
 <hr />
 <div class="row">
   <div class="col-4">
-    <h3>Usuario actual:</h3>
-    <button class="btn btn-primary">Anterior</button>
-    <button class="btn btn-primary">Siguiente</button>
+    <h3>Usuario actual: {{ idUser() }}</h3>
+    <button (click)="loadUser(this.idUser() - 1)" class="btn btn-primary">
+      Anterior
+    </button>
+    <button (click)="loadUser(this.idUser() + 1)" class="btn btn-primary">
+      Siguiente
+    </button>
   </div>
 
-  <div class="col-8">
+  <div class="col-8" *ngIf="currentUser()">
     <h3>Usuario:</h3>
-    <p>Correo:</p>
-    <p>Nombre:</p>
-    <img src="..." alt="Avatar" />
+    <p>Correo: {{ currentUser()?.email }}</p>
+    <p>Nombre: {{ currentUser()?.first_name }}</p>
+    <img [src]="currentUser()?.avatar" alt="Avatar" class="rounded" />
   </div>
-  <div class="col-8 text-danger">
+  <div class="col-8 text-danger" *ngIf="!userWasFound()">
     <h3>Usuario no encontrado):</h3>
   </div>
 </div>
