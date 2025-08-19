@@ -27,3 +27,7 @@ para revisar contenedores inactivos
 ## Comandos para crear CRUD automatico
 
 `nest g resource 'nombre-componente'`
+
+## Backend en Nest
+
+Copiar el ```.env.template``` y renombrarlo a ```.env```
