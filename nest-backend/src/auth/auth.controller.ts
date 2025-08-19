@@ -42,18 +42,25 @@ export class AuthController {
     return this.authService.findUserById(idUser);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.authService.findOne(+id);
+  @UseGuards(AuthGuard)
+  @Get('/check-token')
+  checkToken(@Request() req: Request) {
+    const userId = req['user']._id;
+    return this.authService.refreshToken(userId)
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAuthDto: UpdateAuthDto) {
-    return this.authService.update(+id, updateAuthDto);
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id: string) {
+  //   return this.authService.findOne(+id);
+  // }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.authService.remove(+id);
-  }
+  // @Patch(':id')
+  // update(@Param('id') id: string, @Body() updateAuthDto: UpdateAuthDto) {
+  //   return this.authService.update(+id, updateAuthDto);
+  // }
+
+  // @Delete(':id')
+  // remove(@Param('id') id: string) {
+  //   return this.authService.remove(+id);
+  // }
 }

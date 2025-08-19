@@ -75,6 +75,13 @@ export class AuthService {
     return rest;
   }
 
+  async refreshToken(idUser: string) {
+    const user = await this.userModel.findById(idUser);
+
+    const { password: _, ...rest } = user.toJSON();
+    return { user: rest, token: this.getJwtToken({ id: user.id }) };
+  }
+
   findOne(id: number) {
     return `This action returns a #${id} auth`;
   }
