@@ -2,6 +2,7 @@ import {
   BadRequestException,
   Injectable,
   InternalServerErrorException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
@@ -9,10 +10,17 @@ import { InjectModel } from '@nestjs/mongoose';
 import { User } from './entities/user.entity';
 import { Model } from 'mongoose';
 import * as bcryptjs from 'bcryptjs';
+import { LoginDto } from './dto/login.dto';
+import { JwtService } from '@nestjs/jwt';
+import { JwtPayload } from './interfaces/jwt-payload';
+import { LoginResponse } from './interfaces/login-response';
 
 @Injectable()
 export class AuthService {
-  constructor(@InjectModel(User.name) private userModel: Model<User>) {}
+  constructor(
+    @InjectModel(User.name) private userModel: Model<User>,
+    private jwtService: JwtService,
+  ) {}
   async create(createAuthDto: CreateUserDto): Promise<User> {
     try {
       const { password, ...userData } = createAuthDto;
@@ -22,7 +30,7 @@ export class AuthService {
       });
 
       await userResponse.save();
-      const { password: _, ...user } = userResponse;
+      const { password: _, ...user } = userResponse.toJSON();
 
       return user;
     } catch (error) {
@@ -33,6 +41,18 @@ export class AuthService {
       }
       throw new InternalServerErrorException('No sé que paso D:');
     }
+  }
+
+  async login(loginDto: LoginDto): Promise<LoginResponse> {
+    const { email, password } = loginDto;
+    const user = await this.userModel.findOne({ email });
+    if (!user) throw new UnauthorizedException('Credenciales invalidas, puto');
+    if (!bcryptjs.compareSync(password, user.password))
+      throw new UnauthorizedException('Credenciales invalidas, puto');
+
+    const { password: _, ...rest } = user.toJSON();
+
+    return { user: rest, token: this.getJwtToken({ id: user.id }) };
   }
 
   findAll() {
@@ -49,5 +69,9 @@ export class AuthService {
 
   remove(id: number) {
     return `This action removes a #${id} auth`;
+  }
+
+  getJwtToken(payload: JwtPayload) {
+    return this.jwtService.sign(payload);
   }
 }
