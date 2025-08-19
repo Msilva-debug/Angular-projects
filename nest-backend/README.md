@@ -31,3 +31,7 @@ para revisar contenedores inactivos
 ## Backend en Nest
 
 Copiar el ```.env.template``` y renombrarlo a ```.env```
+
+## Generar guardianes
+
+```nest g gu --nombre``` 

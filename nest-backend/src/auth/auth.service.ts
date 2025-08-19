@@ -14,6 +14,7 @@ import { LoginDto } from './dto/login.dto';
 import { JwtService } from '@nestjs/jwt';
 import { JwtPayload } from './interfaces/jwt-payload';
 import { LoginResponse } from './interfaces/login-response';
+import { RegisterUserDto } from './dto/register-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -42,6 +43,15 @@ export class AuthService {
       throw new InternalServerErrorException('No sé que paso D:');
     }
   }
+  async register(registerUserDto: RegisterUserDto) {
+    const user = await this.create(registerUserDto);
+    const { token } = await this.login({
+      password: registerUserDto.password,
+      email: user.email,
+    });
+
+    return { token, user };
+  }
 
   async login(loginDto: LoginDto): Promise<LoginResponse> {
     const { email, password } = loginDto;
@@ -56,7 +66,13 @@ export class AuthService {
   }
 
   findAll() {
-    return `This action returns all auth`;
+    return this.userModel.find();
+  }
+
+  async findUserById(userId: string) {
+    const user = await this.userModel.findById(userId);
+    const { password, ...rest } = user.toJSON();
+    return rest;
   }
 
   findOne(id: number) {
