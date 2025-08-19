@@ -8,14 +8,23 @@ import { UpdateAuthDto } from './dto/update-auth.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from './entities/user.entity';
 import { Model } from 'mongoose';
+import * as bcryptjs from 'bcryptjs';
 
 @Injectable()
 export class AuthService {
   constructor(@InjectModel(User.name) private userModel: Model<User>) {}
   async create(createAuthDto: CreateUserDto): Promise<User> {
     try {
-      const userResponse = new this.userModel(createAuthDto);
-      return await userResponse.save();
+      const { password, ...userData } = createAuthDto;
+      const userResponse = new this.userModel({
+        password: bcryptjs.hashSync(password, 10),
+        ...userData,
+      });
+
+      await userResponse.save();
+      const { password: _, ...user } = userResponse;
+
+      return user;
     } catch (error) {
       if (error.code === 11000) {
         throw new BadRequestException(
