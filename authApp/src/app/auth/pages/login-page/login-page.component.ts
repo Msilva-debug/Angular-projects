@@ -1,0 +1,17 @@
+import { Component, inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+@Component({
+  templateUrl: './login-page.component.html',
+  styleUrl: './login-page.component.css',
+})
+export class LoginPageComponent {
+  private fb = inject(FormBuilder);
+  public formAuth: FormGroup = this.fb.group({
+    email: ['', [Validators.email, Validators.required]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+  });
+  login() {
+    console.log('aaaaa', this.formAuth.value);
+  }
+}
