@@ -11,7 +11,7 @@ export class LoginPageComponent {
     email: ['', [Validators.email, Validators.required]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
-  login() {
+  login = () => {
     console.log('aaaaa', this.formAuth.value);
-  }
+  };
 }
