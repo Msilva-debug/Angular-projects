@@ -34,4 +34,4 @@ Copiar el ```.env.template``` y renombrarlo a ```.env```
 
 ## Generar guardianes
 
-```nest g gu --nombre``` 
+```nest g gu --nombre```  
