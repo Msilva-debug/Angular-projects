@@ -1,8 +1,9 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { environment } from '../../../environments/environments';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map, Observable, of, tap, throwError } from 'rxjs';
 import { User, AuthStatus, LoginResponse } from '../interfaces';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -10,27 +11,35 @@ import { User, AuthStatus, LoginResponse } from '../interfaces';
 export class AuthService {
   private readonly baseUrl: string = environment.baseUrl;
   private http = inject(HttpClient);
+  private routes = inject(Router);
   private _userRegister = signal<string | ''>('');
 
   private _currentUser = signal<User | null>(null);
-  private _authStatus = signal<AuthStatus>(AuthStatus.cheking);
 
   public currentUser = computed(() => this._currentUser());
-  public authStatus = computed(() => this._authStatus());
   public userRegister = computed(() => this._userRegister());
 
-  constructor() {}
+  constructor() {
+    this.loadInfoUser().subscribe({
+      error: () => {
+        localStorage.removeItem('token');
+        this.routes.navigateByUrl('/auth/login');
+      },
+    });
+  }
 
+  setAuthentication(user: User, token: string): boolean {
+    this._currentUser.set(user);
+    localStorage.setItem('token', token);
+    return true;
+  }
   login = (email: string, password: string): Observable<boolean> => {
     const url = `${this.baseUrl}/auth/login`;
     const body = { email, password };
     return this.http.post<LoginResponse>(url, body).pipe(
-      tap(({ user, token }) => {
-        this._currentUser.set(user);
-        this._authStatus.set(AuthStatus.authenticated);
-        localStorage.setItem('token', token);
+      map(({ user, token }) => {
+        return this.setAuthentication(user, token);
       }),
-      map(() => true),
       catchError(({ error }) => {
         const { message } = error;
         return throwError(() => message);
@@ -53,5 +62,30 @@ export class AuthService {
         return throwError(() => message);
       })
     );
+  };
+
+  loadInfoUser = (): Observable<boolean> => {
+    const token = localStorage.getItem('token');
+    if (!token) return of(false);
+    const url = `${this.baseUrl}/auth/check-token`;
+
+    return this.http
+      .get<LoginResponse>(url, {
+        headers: { authorization: `Bearer ${token}` },
+      })
+      .pipe(
+        map(({ user, token }) => {
+          return this.setAuthentication(user, token);
+        }),
+        catchError(({ error }) => {
+          const { message } = error;
+          return throwError(() => message);
+        })
+      );
+  };
+
+  logout = () => {
+    localStorage.removeItem('token');
+    this.routes.navigateByUrl('/auth/login');
   };
 }

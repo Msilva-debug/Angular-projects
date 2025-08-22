@@ -27,7 +27,7 @@ export class AuthGuard implements CanActivate {
         secret: process.env.JWT_SEED,
       });
       const user = await this.authService.findUserById(payload.id);
-      
+
       if (!user) throw new UnauthorizedException('No existe el usuario');
       if (!user.isActive) throw new UnauthorizedException('Usuario no activo');
 
