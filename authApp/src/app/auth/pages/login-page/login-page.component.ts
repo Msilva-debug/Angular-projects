@@ -13,10 +13,10 @@ export class LoginPageComponent {
   private authService = inject(AuthService);
   public formAuth: FormGroup = this.fb.group({
     email: [
-      'mateocelis1550@gmail.com',
+      this.authService.userRegister(),
       [Validators.email, Validators.required],
     ],
-    password: ['123456', [Validators.required, Validators.minLength(6)]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
   });
   login = () => {
     const { email, password } = this.formAuth.value;
