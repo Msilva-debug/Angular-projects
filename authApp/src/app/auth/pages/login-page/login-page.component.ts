@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { User } from '../../interfaces';
 import Swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 @Component({
   templateUrl: './login-page.component.html',
@@ -10,6 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class LoginPageComponent {
   private fb = inject(FormBuilder);
+  private route = inject(Router);
   private authService = inject(AuthService);
   public formAuth: FormGroup = this.fb.group({
     email: [
@@ -26,6 +28,8 @@ export class LoginPageComponent {
           title: 'Sesión iniciada con exito!',
           icon: 'success',
           draggable: true,
+        }).then(() => {
+          this.route.navigateByUrl('/dashboard');
         });
       },
       error: (error) => {
