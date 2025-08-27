@@ -1,1 +1,50 @@
-<p>control-flow works!</p>
+<!-- <h1 class="text-3xl mb-5">Control flow</h1> -->
+
+<shared-title title-pro="Control flow" />
+<section class="grid gird-cols-1 md:grid-cols-2 gap-3">
+  <div class="bg-white rounded shadow p-10">
+    <h2 class="text-2xl font-bold mb-5">if:{{ showContent() }}</h2>
+
+    <button
+      class="p-2 bg-blue-500 rounded text-white"
+      (click)="toggleContent()"
+    >
+      Click me!
+    </button>
+
+    @if (showContent()) {
+    <p class="mt-5">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
+      voluptatum.
+    </p>
+    } @else {
+    <p class="mt-5">Content is hidden</p>
+    }
+  </div>
+  <div class="bg-white rounded shadow p-10">
+    <h2 class="text-3xl">{{ grade() }}</h2>
+    @switch (grade()) { @case ('A'){
+    <p>Arriba de 90</p>
+    } @case ('B'){
+    <p>Arriba de 80</p>
+    } @default{
+    <p>Reprobado</p>
+    } }
+  </div>
+  <div class="bg-white rounded shadow p-10">
+    <ul>
+      @for (item of frameworks(); track $index) {
+      <li>{{ item }}</li>
+      }
+    </ul>
+  </div>
+  <div class="bg-white rounded shadow p-10">
+    <ul>
+      @for (item of frameworks2(); track $index) {
+      <li>{{ item }}</li>
+      }@empty {
+      <li>No hay frameworks</li>
+      }
+    </ul>
+  </div>
+</section>
