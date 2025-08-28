@@ -1,1 +1,11 @@
-<p>defer-options works!</p>
+<shared-title title-pro="Defer Options" />
+
+@defer (on interaction) {
+<app-heavy-loaders-fast>
+  <span>On interaction</span>
+</app-heavy-loaders-fast>
+}@placeholder {
+<div class="w-full h-20 bg-purple-50 cursor-pointer">
+  <p>Click en el div</p>
+</div>
+}
