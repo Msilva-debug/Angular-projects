@@ -1,12 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { NgClass } from '../../../../node_modules/@angular/common/index';
 
 @Component({
-  selector: 'app-heavy-loaders-slow',
+  selector: 'shared-heavy-loaders-slow',
   standalone: true,
-  imports: [],
-  template: `<div class="heavy-loaders-slow">
-    <h2>Heavy Loaders (Slow)</h2>
-    <p>This component is for displaying heavy loaders that are slow.</p>
-  </div>`,
+  imports: [NgClass],
+  template: `<section [ngClass]="['heavy-loader-slow', cssClass]">
+    Heavy Loader Slow
+  </section>`,
 })
-export class HeavyLoadersSlowComponent {}
+export class HeavyLoadersSlowComponent {
+  @Input({ required: true }) cssClass!: string;
+  constructor() {
+    const date = Date.now();
+
+    while (Date.now() - date < 3000) {}
+    console.log('Heavy processing done');
+  }
+}
