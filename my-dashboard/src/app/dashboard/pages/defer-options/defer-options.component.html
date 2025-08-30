@@ -1,11 +1,42 @@
 <shared-title title-pro="Defer Options" />
 
-@defer (on interaction) {
-<app-heavy-loaders-fast>
-  <span>On interaction</span>
-</app-heavy-loaders-fast>
-}@placeholder {
-<div class="w-full h-20 bg-purple-50 cursor-pointer">
-  <p>Click en el div</p>
-</div>
-}
+<section>
+  @defer (on interaction) {
+  <app-heavy-loaders-fast>
+    <span>On interaction</span>
+  </app-heavy-loaders-fast>
+  }@placeholder {
+  <div class="w-full h-20 bg-purple-500 cursor-pointer">
+    <p>Click en el div</p>
+  </div>
+  }
+</section>
+<section>
+  <button
+    #btnInteraction
+    class="p-2 bg-blue-500 hover:bg-blue-700 transition-all rounded text-white my-2 cursor-pointer"
+  >
+    Click me!
+  </button>
+  @defer (on interaction(btnInteraction)) {
+  <app-heavy-loaders-fast>
+    <span>On interaction(btnInteraction)</span>
+  </app-heavy-loaders-fast>
+  }@placeholder {
+  <div class="w-full h-20 bg-purple-500">
+    <p>Click en el div</p>
+  </div>
+  }
+</section>
+
+<section>
+  @defer (on hover) {
+  <app-heavy-loaders-fast>
+    <span>On hover</span>
+  </app-heavy-loaders-fast>
+  }@placeholder {
+  <div class="w-full h-20 bg-purple-500">
+    <p>Click en el div</p>
+  </div>
+  }
+</section>

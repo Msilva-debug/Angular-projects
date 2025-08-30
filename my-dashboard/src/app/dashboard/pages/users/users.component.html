@@ -1,1 +1,18 @@
-<p>users works!</p>
+<shared-title title-pro="Listado de usuarios" />
+
+<ul>
+  @for (user of service.users(); track user.id) {
+  <li class="flex items-center my-2 cursor-pointer">
+    <img
+      [srcset]="user.avatar"
+      alt="{{ user.first_name }} {{ user.last_name }}"
+      class="rounded w-14"
+    />
+    <a [routerLink]="['/dashboard/user', user.id]"
+      >{{ user.first_name }} {{ user.last_name }}</a
+    >
+  </li>
+  }@empty {
+  <li>No hay usuarios disponibles</li>
+  }
+</ul>

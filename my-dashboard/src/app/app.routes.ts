@@ -57,11 +57,19 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'view-transition',
-        title: 'View Transition',
+        path: 'view-transition-1',
+        title: 'View Transition-1',
         loadComponent: () =>
           import(
-            './dashboard/pages/view-transition/view-transition.component'
+            './dashboard/pages/view-transition/view-transition.component1'
+          ).then((c) => c.ViewTransitionComponent),
+      },
+      {
+        path: 'view-transition-2',
+        title: 'View Transition-2',
+        loadComponent: () =>
+          import(
+            './dashboard/pages/view-transition/view-transition.component2'
           ).then((c) => c.ViewTransitionComponent),
       },
       { path: '**', redirectTo: 'control-flow', pathMatch: 'full' },
